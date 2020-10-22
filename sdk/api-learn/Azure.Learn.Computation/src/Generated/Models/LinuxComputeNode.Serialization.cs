@@ -6,6 +6,7 @@
 #nullable disable
 
 using System.Text.Json;
+using Azure;
 using Azure.Core;
 
 namespace Azure.Learn.Computation.Models
@@ -25,7 +26,7 @@ namespace Azure.Learn.Computation.Models
         internal static LinuxComputeNode DeserializeLinuxComputeNode(JsonElement element)
         {
             string sshPublicKey = default;
-            Optional<string> eTag = default;
+            Optional<ETag> eTag = default;
             string name = default;
             string kind = default;
             foreach (var property in element.EnumerateObject())
@@ -37,7 +38,7 @@ namespace Azure.Learn.Computation.Models
                 }
                 if (property.NameEquals("eTag"))
                 {
-                    eTag = property.Value.GetString();
+                    eTag = new ETag(property.Value.GetString());
                     continue;
                 }
                 if (property.NameEquals("name"))
@@ -51,7 +52,7 @@ namespace Azure.Learn.Computation.Models
                     continue;
                 }
             }
-            return new LinuxComputeNode(eTag.Value, name, kind, sshPublicKey);
+            return new LinuxComputeNode(eTag, name, kind, sshPublicKey);
         }
     }
 }

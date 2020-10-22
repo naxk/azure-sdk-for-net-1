@@ -6,6 +6,7 @@
 #nullable disable
 
 using System.Text.Json;
+using Azure;
 using Azure.Core;
 
 namespace Azure.Learn.Computation.Models
@@ -30,14 +31,14 @@ namespace Azure.Learn.Computation.Models
                     case "WindowsComputeNode": return WindowsComputeNode.DeserializeWindowsComputeNode(element);
                 }
             }
-            Optional<string> eTag = default;
+            Optional<ETag> eTag = default;
             string name = default;
             string kind = default;
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("eTag"))
                 {
-                    eTag = property.Value.GetString();
+                    eTag = new ETag(property.Value.GetString());
                     continue;
                 }
                 if (property.NameEquals("name"))
@@ -51,7 +52,7 @@ namespace Azure.Learn.Computation.Models
                     continue;
                 }
             }
-            return new ComputeNode(eTag.Value, name, kind);
+            return new ComputeNode(eTag, name, kind);
         }
     }
 }

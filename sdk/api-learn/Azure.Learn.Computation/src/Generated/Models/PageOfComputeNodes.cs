@@ -12,7 +12,7 @@ using System.Linq;
 namespace Azure.Learn.Computation.Models
 {
     /// <summary> The PageOfComputeNodes. </summary>
-    public partial class PageOfComputeNodes
+    internal partial class PageOfComputeNodes
     {
         /// <summary> Initializes a new instance of PageOfComputeNodes. </summary>
         /// <param name="value"> The compute nodes in this page. </param>

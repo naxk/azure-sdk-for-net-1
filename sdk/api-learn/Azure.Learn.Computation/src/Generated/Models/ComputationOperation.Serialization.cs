@@ -11,13 +11,13 @@ using Azure.Core;
 
 namespace Azure.Learn.Computation.Models
 {
-    public partial class Operation
+    internal partial class ComputationOperation
     {
-        internal static Operation DeserializeOperation(JsonElement element)
+        internal static ComputationOperation DeserializeComputationOperation(JsonElement element)
         {
             Optional<DateTimeOffset> createdDateTime = default;
             Optional<float> percentComplete = default;
-            Optional<OperationStatus> status = default;
+            Optional<ComputationOperationStatus> status = default;
             Optional<float> value = default;
             foreach (var property in element.EnumerateObject())
             {
@@ -33,7 +33,7 @@ namespace Azure.Learn.Computation.Models
                 }
                 if (property.NameEquals("status"))
                 {
-                    status = new OperationStatus(property.Value.GetString());
+                    status = new ComputationOperationStatus(property.Value.GetString());
                     continue;
                 }
                 if (property.NameEquals("value"))
@@ -42,7 +42,7 @@ namespace Azure.Learn.Computation.Models
                     continue;
                 }
             }
-            return new Operation(Optional.ToNullable(createdDateTime), Optional.ToNullable(percentComplete), Optional.ToNullable(status), Optional.ToNullable(value));
+            return new ComputationOperation(Optional.ToNullable(createdDateTime), Optional.ToNullable(percentComplete), Optional.ToNullable(status), Optional.ToNullable(value));
         }
     }
 }

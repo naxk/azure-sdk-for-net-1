@@ -6,6 +6,7 @@
 #nullable disable
 
 using System;
+using Azure;
 
 namespace Azure.Learn.Computation.Models
 {
@@ -36,7 +37,7 @@ namespace Azure.Learn.Computation.Models
         /// <param name="name"> The name of the compute node. </param>
         /// <param name="kind"> . </param>
         /// <param name="sshPublicKey"> The compute node&apos;s public key. </param>
-        internal LinuxComputeNode(string eTag, string name, string kind, string sshPublicKey) : base(eTag, name, kind)
+        internal LinuxComputeNode(ETag eTag, string name, string kind, string sshPublicKey) : base(eTag, name, kind)
         {
             SshPublicKey = sshPublicKey;
             Kind = kind ?? "LinuxComputeNode";

@@ -51,7 +51,7 @@ namespace Azure.Learn.Computation
         /// <param name="operationId"> The String to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
-        public async Task<ResponseWithHeaders<Operation, ExampleComputationServiceForAzureSDKAPIDesignTrainingUnitComputationHeaders>> ComputationAsync(string operationId, CancellationToken cancellationToken = default)
+        public async Task<ResponseWithHeaders<ComputationOperation, ExampleComputationServiceForAzureSDKAPIDesignTrainingUnitComputationHeaders>> ComputationAsync(string operationId, CancellationToken cancellationToken = default)
         {
             if (operationId == null)
             {
@@ -65,9 +65,9 @@ namespace Azure.Learn.Computation
             {
                 case 200:
                     {
-                        Operation value = default;
+                        ComputationOperation value = default;
                         using var document = await JsonDocument.ParseAsync(message.Response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-                        value = Operation.DeserializeOperation(document.RootElement);
+                        value = ComputationOperation.DeserializeComputationOperation(document.RootElement);
                         return ResponseWithHeaders.FromValue(value, headers, message.Response);
                     }
                 default:
@@ -78,7 +78,7 @@ namespace Azure.Learn.Computation
         /// <param name="operationId"> The String to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
-        public ResponseWithHeaders<Operation, ExampleComputationServiceForAzureSDKAPIDesignTrainingUnitComputationHeaders> Computation(string operationId, CancellationToken cancellationToken = default)
+        public ResponseWithHeaders<ComputationOperation, ExampleComputationServiceForAzureSDKAPIDesignTrainingUnitComputationHeaders> Computation(string operationId, CancellationToken cancellationToken = default)
         {
             if (operationId == null)
             {
@@ -92,9 +92,9 @@ namespace Azure.Learn.Computation
             {
                 case 200:
                     {
-                        Operation value = default;
+                        ComputationOperation value = default;
                         using var document = JsonDocument.Parse(message.Response.ContentStream);
-                        value = Operation.DeserializeOperation(document.RootElement);
+                        value = ComputationOperation.DeserializeComputationOperation(document.RootElement);
                         return ResponseWithHeaders.FromValue(value, headers, message.Response);
                     }
                 default:

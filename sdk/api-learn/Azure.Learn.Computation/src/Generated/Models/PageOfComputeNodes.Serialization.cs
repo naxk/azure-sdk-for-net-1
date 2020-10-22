@@ -11,7 +11,7 @@ using Azure.Core;
 
 namespace Azure.Learn.Computation.Models
 {
-    public partial class PageOfComputeNodes
+    internal partial class PageOfComputeNodes
     {
         internal static PageOfComputeNodes DeserializePageOfComputeNodes(JsonElement element)
         {
