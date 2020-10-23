@@ -4,7 +4,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace Azure.DigitalTwins.Core.Serialization
+namespace Azure.DigitalTwins.Core
 {
     /// <summary>
     /// An optional, helper class for deserializing a digital twin.
@@ -13,14 +13,8 @@ namespace Azure.DigitalTwins.Core.Serialization
     /// <remarks>
     /// For more samples, see <see href="https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/digitaltwins/Azure.DigitalTwins.Core/samples">our repo samples</see>.
     /// </remarks>
-    public class DigitalTwinMetadata
+    public class ComponentMetadata
     {
-        /// <summary>
-        /// The Id of the model that the digital twin or component is modeled by.
-        /// </summary>
-        [JsonPropertyName("$model")]
-        public string ModelId { get; set; }
-
         /// <summary>
         /// Model-defined writable properties' request state.
         /// </summary>

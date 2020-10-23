@@ -10,7 +10,6 @@ using System.Net;
 using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Azure.DigitalTwins.Core.Serialization;
 using static Azure.DigitalTwins.Core.Samples.SampleLogger;
 
 namespace Azure.DigitalTwins.Core.Samples
@@ -254,7 +253,7 @@ namespace Azure.DigitalTwins.Core.Samples
                 try
                 {
                     BasicDigitalTwin basicDigitalTwin = JsonSerializer.Deserialize<BasicDigitalTwin>(twin.Value);
-                    Response<BasicDigitalTwin> response = await client.CreateDigitalTwinAsync<BasicDigitalTwin>(twin.Key, basicDigitalTwin);
+                    Response<BasicDigitalTwin> response = await client.CreateDigitalTwinAsync(twin.Key, basicDigitalTwin);
 
                     Console.WriteLine($"Created digital twin '{twin.Key}'.");
                     Console.WriteLine($"\tBody: {JsonSerializer.Serialize(response?.Value)}");
@@ -352,7 +351,7 @@ namespace Azure.DigitalTwins.Core.Samples
                 {
                     try
                     {
-                        Response<BasicRelationship> createRelationshipResponse = await client.CreateRelationshipAsync<BasicRelationship>(
+                        Response<BasicRelationship> createRelationshipResponse = await client.CreateRelationshipAsync(
                             relationship.SourceId,
                             relationship.Id,
                             relationship);
